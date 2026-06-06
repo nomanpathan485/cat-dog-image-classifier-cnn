@@ -6,7 +6,8 @@ model = tf.keras.models.load_model(
     "cat-dog-image-classifier-cnn/cat_dog_model.keras"
 )
 
-img_path = "cat-dog-image-classifier-cnn/test.jpeg"
+img_path = "cat-dog-image-classifier-cnn/dataset/PetImages/Cat/1.jpg"
+
 img = image.load_img(img_path, target_size=(128,128))
 
 img_array = image.img_to_array(img)

@@ -39,52 +39,52 @@ val_dataset = tf.keras.utils.image_dataset_from_directory(
 print(train_dataset)
 print(val_dataset)
 
-# normalization_layer = tf.keras.layers.Rescaling(1./255)
-# train_dataset = train_dataset.map(
-#     lambda x,y:(normalization_layer(x),y)
-# )
-# val_dataset = val_dataset.map(
-#     lambda x, y:(normalization_layer(x),y)
-# )
+normalization_layer = tf.keras.layers.Rescaling(1./255)
+train_dataset = train_dataset.map(
+    lambda x,y:(normalization_layer(x),y)
+)
+val_dataset = val_dataset.map(
+    lambda x, y:(normalization_layer(x),y)
+)
 
-# model = tf.keras.Sequential([
-#     tf.keras.layers.Conv2D(
-#         32,
-#         (3,3),
-#         activation="relu",
-#         input_shape=(128,128,3)
-#     ),
+model = tf.keras.Sequential([
+    tf.keras.layers.Conv2D(
+        32,
+        (3,3),
+        activation="relu",
+        input_shape=(128,128,3)
+    ),
 
-#     tf.keras.layers.MaxPooling2D((2,2)),
-#     tf.keras.layers.Conv2D(
-#         64,
-#         (3,3),
-#         activation="relu"
-#     ),
-#     tf.keras.layers.MaxPooling2D((2,2)),
-#     tf.keras.layers.Flatten(),
-#     tf.keras.layers.Dense(
-#         64,
-#         activation="relu",
-#     ),
-#     tf.keras.layers.Dropout(0.5),
+    tf.keras.layers.MaxPooling2D((2,2)),
+    tf.keras.layers.Conv2D(
+        64,
+        (3,3),
+        activation="relu"
+    ),
+    tf.keras.layers.MaxPooling2D((2,2)),
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(
+        64,
+        activation="relu",
+    ),
+    tf.keras.layers.Dropout(0.5),
     
-#     tf.keras.layers.Dense(
-#         1,
-#         activation="sigmoid"
-#     )
-# ])
+    tf.keras.layers.Dense(
+        1,
+        activation="sigmoid"
+    )
+])
 
-# model.compile(
-#     optimizer = "adam",
-#     loss="binary_crossentropy",
-#     metrics = ["accuracy"]
-# )
+model.compile(
+    optimizer = "adam",
+    loss="binary_crossentropy",
+    metrics = ["accuracy"]
+)
 
-# model.summary()
-# history = model.fit(
-#     train_dataset,
-#     validation_data = val_dataset,
-#     epochs = 10
-# )
-# model.save("cat_dog_model.keras")
+model.summary()
+history = model.fit(
+    train_dataset,
+    validation_data = val_dataset,
+    epochs = 10
+)
+model.save("cat_dog_model.keras")
